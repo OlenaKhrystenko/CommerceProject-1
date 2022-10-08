@@ -44,23 +44,57 @@ namespace CommerceProject.Controllers
         }
 
         //GET Action method
- /*       public IActionResult LogIn() { 
-            return RedirectToAction("Index");
-        }
- */
-        //10/7/2022
-        [HttpPost]
-        public IActionResult LogIn(FormCollection fc)
-        {
-         
-            {
-                ViewBag.UserName = fc["UserName"];
-                ViewBag.Password = fc["Password"];
+        /*       public IActionResult LogIn() { 
+                   return RedirectToAction("Index");
+               }
+        */
 
-                return View();
+        public IActionResult demo(IFormCollection form)
+        {
+            string usr = form["UserName"];
+            string pwd = form["Password"];
+            string yes = "no";
+            IEnumerable<Login> objLoginList = _db.Logins;
+            if (objLoginList != null)
+            {
+                foreach (Login login in objLoginList)
+                {
+                    if (login.UserName == usr && login.Password == pwd)
+                    {
+                        yes = "yes";
+                        ViewBag.Message = "You are successfuly logged in.";
+                        return RedirectToAction("Demo");
+                    }
+                    else {
+                        ViewBag.Message = "Your login or password is incorrect";
+                    }
+                }
             }
+            
+            return View();
+
+            //return "Log in as " + usr + ", with password" + pwd + "           " + yes;
+
         }
-  
+
+/*        public string demo(IFormCollection form) {
+            
+            string usr = form["UserName"];
+            string pwd = form["Password"];
+            string yes = "no";
+            IEnumerable<Login> objLoginList = _db.Logins;
+            if (objLoginList != null) {
+                foreach(Login login in objLoginList) {
+                    if (login.UserName == usr && login.Password == pwd) {
+                        yes = "yes";
+                    }
+                }
+            }
+            
+            return "Log in as " + usr + ", with password" + pwd + "           " + yes;
+            
+        }
+*/  
      
     }
 }

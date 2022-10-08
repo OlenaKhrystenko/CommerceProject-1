@@ -1,6 +1,7 @@
 ﻿@model Login
 @{
     ViewData["Title"] = "Index";
+    ViewBag.Title = "Index";
 }
 
 
@@ -14,8 +15,28 @@
             <div class="card-header">
                 <h2>Log in to Online Banking</h2>
             </div>
-
-            <div class="card-body">
+            @using (Html.BeginForm("demo", "Login")){
+                <div class="card-body">
+                    <form asp-controller="Login" method="post">
+                        <div class="mb-3">
+                            <label>Customer ID:</label>
+                            <input asp-for=UserName type="text" placeholder="ID" class="form-control" name="UserName" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Password:</label>
+                            <input asp-for=Password type="text" placeholder="password" class="form-control" name="Password"/>
+                        </div>
+                        <div class="mb-3">
+                            <button asp-controller="Login" asp-action="demo" type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    
+                </div>
+            }
+            <p>@ViewBag.Message</p>
+            <!--           <div class="card-body">
                 <form asp-controller="Login" method="post">
                     <div class="mb-3">
                         <label>Customer ID:</label>
@@ -30,9 +51,8 @@
                     </div>
                 </form>
             </div>
-            <div class="card-footer">
-
-            </div>
+            -->
+            
         </div>
     </div>
 </div>
@@ -52,9 +72,3 @@
 
 </div>
 
-<br />
-<h3><b>Forms - Form Collection Objects</b></h3>
-<h4 style="color:purple">
-    ID: @ViewBag.UserName<br />
-    Name: @ViewBag.Password
-</h4>
