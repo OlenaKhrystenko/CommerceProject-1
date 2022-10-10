@@ -1,6 +1,7 @@
 ﻿using CommerceProject.Data;
 using CommerceProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CommerceProject.Controllers
 {
@@ -48,7 +49,8 @@ namespace CommerceProject.Controllers
                    return RedirectToAction("Index");
                }
         */
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult demo(IFormCollection form)
         {
             string usr = form["UserName"];
@@ -63,21 +65,16 @@ namespace CommerceProject.Controllers
                     {
                         yes = "yes";
                         ViewBag.Message = "You are successfuly logged in.";
-                        return RedirectToAction("Demo");
-                    }
-                    else {
-                        ViewBag.Message = "Your login or password is incorrect";
+                        //return RedirectToAction("Create");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
-            
-            return View();
-
-            //return "Log in as " + usr + ", with password" + pwd + "           " + yes;
-
+            ViewBag.Message = "Your login or password is incorrect";
+            return View("Index");
         }
 
-/*        public string demo(IFormCollection form) {
+ /*       public string demo(IFormCollection form) {
             
             string usr = form["UserName"];
             string pwd = form["Password"];
