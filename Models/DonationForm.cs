@@ -9,7 +9,7 @@ namespace CommerceProject.Models
     public class DonationForm
     {
         [Key]
-        public int ID { get; set; }
+        public int FormID { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

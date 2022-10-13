@@ -5,7 +5,7 @@ namespace CommerceProject.Models
     public class CardInfo
     {
         [Key]
-        public int Id { get; set; }
+        public int CardId { get; set; }
         [Required]
         public string CardHolderName { get; set; }
         [Required]

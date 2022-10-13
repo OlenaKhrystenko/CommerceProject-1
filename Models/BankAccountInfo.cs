@@ -5,7 +5,7 @@ namespace CommerceProject.Models
     public class BankAccountInfo
     {
         [Key]
-        public int ID { get; set; }
+        public int BankAccountID { get; set; }
         [Required]
         public string BankName { get; set; }
         [Required]

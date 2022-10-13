@@ -11,5 +11,9 @@ namespace CommerceProject.Data
         }
 
         public DbSet<Login> Logins { get; set; }    
+        public DbSet<Donor> Donors { get; set; }
+        public DbSet<DonationForm> donationForms { get; set; }
+        public DbSet<Fundraiser> Fundraisers { get; set; }
+        public DbSet<UserProfile> Profiles { get; set; }
     }
 }

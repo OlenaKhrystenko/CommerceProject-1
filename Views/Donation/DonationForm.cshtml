@@ -1,3 +1,66 @@
-﻿
+﻿@model DonationForm
 
-<h5>Here will be a donation form</h5>
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Donation Form</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name">Full Name *</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email">E-mail *</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PhoneNumber">Phone Number *</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DonationType">Type of Donation *</label>
+              <label class="container">Love Offering
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Building Expansion
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">One Time Donation
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Comment">Comment *</label>
+            <input asp-for="Comment" class="form-control" />
+            <span asp-validation-for="Comment" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DonationAmount">Donation Amount *</label>
+            <input asp-for="DonationAmount" class="form-control" />
+            <span asp-validation-for="DonationAmount" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Payment Method *</label>
+            <label class="container">
+                Debit or Credit Card
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Bank Account
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" style="width:150px">Submit</button>
+        </div>
+        <hr />
+    </div>
+</form>

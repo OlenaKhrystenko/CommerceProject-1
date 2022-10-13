@@ -4,6 +4,7 @@ using CommerceProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommerceProject.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221013203135_AddDonationFormToDatabase")]
+    partial class AddDonationFormToDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,9 +75,6 @@ namespace CommerceProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FundraiserID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -85,41 +84,7 @@ namespace CommerceProject.Migrations
 
                     b.HasKey("DonorId");
 
-                    b.HasIndex("FundraiserID");
-
                     b.ToTable("Donors");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.Fundraiser", b =>
-                {
-                    b.Property<int>("FundraiserID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FundraiserID"), 1L, 1);
-
-                    b.Property<double>("CurrentAmount")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Goal")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UserProfileUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FundraiserID");
-
-                    b.HasIndex("UserProfileUserId");
-
-                    b.ToTable("Fundraisers");
                 });
 
             modelBuilder.Entity("CommerceProject.Models.Login", b =>
@@ -157,63 +122,6 @@ namespace CommerceProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Logins");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.UserProfile", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DOB")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Profiles");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.Donor", b =>
-                {
-                    b.HasOne("CommerceProject.Models.Fundraiser", null)
-                        .WithMany("donors")
-                        .HasForeignKey("FundraiserID");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.Fundraiser", b =>
-                {
-                    b.HasOne("CommerceProject.Models.UserProfile", null)
-                        .WithMany("Fundraisers")
-                        .HasForeignKey("UserProfileUserId");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.Fundraiser", b =>
-                {
-                    b.Navigation("donors");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.UserProfile", b =>
-                {
-                    b.Navigation("Fundraisers");
                 });
 #pragma warning restore 612, 618
         }

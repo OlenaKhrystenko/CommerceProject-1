@@ -10,7 +10,7 @@ namespace CommerceProject.Models
     public class Donor
     {
         [Key]
-        public int Id { get; set; }
+        public int DonorId { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace CommerceProject.Models
         [Required]
         public string Fundraiser { get; set; }
 
-        public DateAndTime DateOfDonation { get; set; }
+        public DateTime DateOfDonation { get; set; }
 
 
     }

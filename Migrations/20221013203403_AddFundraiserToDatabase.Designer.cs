@@ -4,6 +4,7 @@ using CommerceProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommerceProject.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221013203403_AddFundraiserToDatabase")]
+    partial class AddFundraiserToDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,12 +114,7 @@ namespace CommerceProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserProfileUserId")
-                        .HasColumnType("int");
-
                     b.HasKey("FundraiserID");
-
-                    b.HasIndex("UserProfileUserId");
 
                     b.ToTable("Fundraisers");
                 });
@@ -159,39 +156,6 @@ namespace CommerceProject.Migrations
                     b.ToTable("Logins");
                 });
 
-            modelBuilder.Entity("CommerceProject.Models.UserProfile", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DOB")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Profiles");
-                });
-
             modelBuilder.Entity("CommerceProject.Models.Donor", b =>
                 {
                     b.HasOne("CommerceProject.Models.Fundraiser", null)
@@ -201,19 +165,7 @@ namespace CommerceProject.Migrations
 
             modelBuilder.Entity("CommerceProject.Models.Fundraiser", b =>
                 {
-                    b.HasOne("CommerceProject.Models.UserProfile", null)
-                        .WithMany("Fundraisers")
-                        .HasForeignKey("UserProfileUserId");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.Fundraiser", b =>
-                {
                     b.Navigation("donors");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.UserProfile", b =>
-                {
-                    b.Navigation("Fundraisers");
                 });
 #pragma warning restore 612, 618
         }
