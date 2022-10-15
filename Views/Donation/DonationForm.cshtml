@@ -1,5 +1,6 @@
 ﻿@model DonationForm
 
+@using (Html.BeginForm("MakeDonation", "Donation")){
 <form method="post">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
@@ -7,31 +8,31 @@
         </div>
         <div class="mb-3">
             <label asp-for="Name">Full Name *</label>
-            <input asp-for="Name" class="form-control" />
+            <input asp-for="Name" class="form-control" name="Name"/>
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Email">E-mail *</label>
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control" name="Email"/>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="PhoneNumber">Phone Number *</label>
-            <input asp-for="PhoneNumber" class="form-control" />
+            <input asp-for="PhoneNumber" class="form-control" name="PhoneNumber"/>
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="DonationType">Type of Donation *</label>
-              <label class="container">Love Offering
-                <input type="checkbox" checked="checked">
+              <label asp-for="DonationType" class="container">Gift
+                <input asp-for="DonationType" type="checkbox" checked="checked" name="DonationType">
                 <span class="checkmark"></span>
             </label>
-            <label class="container">Building Expansion
-                <input type="checkbox" checked="checked">
+            <label asp-for="DonationType" class="container">Building Expansion
+                    <input asp-for="DonationType" type="checkbox" checked="checked" name="DonationType">
                 <span class="checkmark"></span>
             </label>
-            <label class="container">One Time Donation
-                <input type="checkbox" checked="checked">
+            <label asp-for="DonationType" class="container">One Time Donation
+                    <input asp-for="DonationType" type="checkbox" checked="checked" name="DonationType">
                 <span class="checkmark"></span>
             </label>
         </div>
@@ -59,8 +60,9 @@
             </label>
         </div>
         <div>
-            <button type="submit" class="btn btn-primary" style="width:150px">Submit</button>
+            <button asp-controller="Donation" asp-action="MakeDonation" type="submit" class="btn btn-primary" style="width:150px">Submit</button>
         </div>
         <hr />
     </div>
 </form>
+}

@@ -2,6 +2,8 @@
 using CommerceProject.Data;
 using CommerceProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using System.Security.Policy;
 
 namespace CommerceProject.Controllers
 {
@@ -16,7 +18,7 @@ namespace CommerceProject.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View("DonationForm");
         }
 
         //GET action method
@@ -28,14 +30,15 @@ namespace CommerceProject.Controllers
         //POST Action method
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult MakeDonation(DonationForm form) {
-            if (!ModelState.IsValid)
+        public IActionResult MakeDonation(DonationForm form, IFormCollection formColl) {
+            if (ModelState.IsValid)
             {
+                form.DonationType = formColl["DonationType"];
                 _dbContext.donationForms.Add(form);
                 _dbContext.SaveChanges();
                 return RedirectToAction("Index");   
             }
-            return View(form);
+            return View("DonationForm");
         }
 
 
