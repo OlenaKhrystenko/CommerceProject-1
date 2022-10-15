@@ -30,6 +30,7 @@ namespace CommerceProject.Controllers
         {
             return View();
         }
+
         //POST action method
         [HttpPost]  
         [ValidateAntiForgeryToken]  

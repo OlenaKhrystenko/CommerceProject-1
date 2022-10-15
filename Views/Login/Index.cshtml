@@ -4,16 +4,11 @@
     //ViewBag.Title = "Index";
 }
 
-
-<h1>Index Login</h1>
-
-<br />
-
 <div class="row">
     <div class="col-6">
         <div class="card">
             <div class="card-header">
-                <h2>Log in to Online Banking</h2>
+                <h2>Log in</h2>
             </div>
             @using (Html.BeginForm("demo", "Login")){
                 <div class="card-body">
@@ -29,6 +24,12 @@
                         <div class="mb-3">
                             <button asp-controller="Login" asp-action="demo" type="submit" class="btn btn-primary">Log in</button>
                         </div>
+                        <div class="mb-3">
+                            <label>Don't have an account?</label>
+                            <a asp-controller="Login" asp-action="Create" class="link-primary">
+                                Join now    
+                            </a>
+                        </div>
                     </form>
                 </div>
                 <div class="card-footer">
@@ -36,32 +37,14 @@
                 </div>
             }
             <p>@ViewBag.Message</p>
-            <!--           <div class="card-body">
-                <form asp-controller="Login" method="post">
-                    <div class="mb-3">
-                        <label>Customer ID:</label>
-                        <input asp-for=UserName type="text" placeholder="ID" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                        <label>Password:</label>
-                        <input asp-for=Password type="text" placeholder="password" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                        <button asp-controller="Home" asp-action="Index" type="submit" class="btn btn-primary">Log in</button>
-                    </div>
-                </form>
-            </div>
-            -->
             
         </div>
     </div>
 </div>
 
+<!--
 <div class="container p-3">
     <div class="row p-4">
-        <div class="col-6">
-            <h2 class="text-primary">Login List</h2>
-        </div>
         <div class="col-6 text-end">
             <a asp-controller="Login" asp-action="Create" class="btn btn-primary">
                 Create New User
@@ -72,3 +55,4 @@
 
 </div>
 
+-->
