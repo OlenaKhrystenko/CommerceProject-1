@@ -56,6 +56,51 @@ namespace CommerceProject.Controllers
         {
             string usr = form["UserName"];
             string pwd = form["Password"];
+
+            string specialSymbols = " !#\"$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            string digits = "0123456789";
+
+            int isSpecSymb = 0;
+            int isDig = 0;
+            int isUprCs = 0;
+            int isMinReached = 0;
+
+            if (usr != null && pwd != null)
+            {
+                //if a password contains at least one special symbol
+                foreach (char item in pwd)
+                {
+                    foreach(char spec in specialSymbols)
+                    {
+                        if(item == spec)
+                        {
+                            isSpecSymb++;
+                        }
+                    }
+                }
+                //if a password contains at least one digit
+                foreach (char item in pwd)
+                {
+                    if (Char.IsDigit(item)) 
+                    {
+                        isDig++;
+                    }
+                }
+                //if a password contains at least one uppercase symbol
+                foreach (char item in pwd)
+                {
+                    if (Char.IsUpper(item)) 
+                    { 
+                        isUprCs++;
+                    }
+                }
+                //if a password's length is at least 8 characters
+                if (pwd.Length >= 8) 
+                {
+                    isMinReached++;
+                }
+            }
+
             string yes = "no";
             IEnumerable<Login> objLoginList = _db.Logins;
             if (objLoginList != null)
@@ -72,6 +117,19 @@ namespace CommerceProject.Controllers
                 }
             }
             ViewBag.Message = "Your login or password is incorrect";
+            return View("Index");
+        }
+
+        public IActionResult passwordCheck(IFormCollection form) 
+        {
+            string password = form["Password"];
+            if (!string.IsNullOrEmpty(password))
+            {
+                if (password.Contains('T')) 
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
             return View("Index");
         }
 
