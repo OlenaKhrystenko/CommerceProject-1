@@ -101,23 +101,50 @@ namespace CommerceProject.Controllers
                 }
             }
 
-            string yes = "no";
-            IEnumerable<Login> objLoginList = _db.Logins;
-            if (objLoginList != null)
+            string pwdErrMsg = "";
+
+            if (isMinReached == 0) 
             {
-                foreach (Login login in objLoginList)
+                pwdErrMsg += "Password must contain at least 8 characters.";
+            }
+            if (isDig == 0) 
+            {
+                pwdErrMsg += "\r\nPassword must contain one digit.";
+            }
+            if (isSpecSymb == 0) 
+            {
+                pwdErrMsg += "\r\nPassword must contain one special sybol.";
+            }
+            if (isUprCs == 0)
+            {
+                pwdErrMsg += "\r\nPassword must contain one uppercase letter.";
+            }
+
+            if (pwdErrMsg.Length > 0)
+            {
+                ViewBag.Message = pwdErrMsg;
+                return View("Index");
+            }
+            else
+            {
+                string yes = "no";
+                IEnumerable<Login> objLoginList = _db.Logins;
+                if (objLoginList != null)
                 {
-                    if (login.UserName == usr && login.Password == pwd)
+                    foreach (Login login in objLoginList)
                     {
-                        yes = "yes";
-                        ViewBag.Message = "You are successfuly logged in.";
-                        //return RedirectToAction("Create");
-                        return RedirectToAction("Index", "Home");
+                        if (login.UserName == usr && login.Password == pwd)
+                        {
+                            yes = "yes";
+                            ViewBag.Message = "You are successfuly logged in.";
+                            //return RedirectToAction("Create");
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                 }
+                ViewBag.Message = "Your login or password is incorrect";
+                return View("Index");
             }
-            ViewBag.Message = "Your login or password is incorrect";
-            return View("Index");
         }
 
         public IActionResult passwordCheck(IFormCollection form) 
