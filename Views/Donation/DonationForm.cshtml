@@ -46,6 +46,7 @@
             <input asp-for="DonationAmount" class="form-control" />
             <span asp-validation-for="DonationAmount" class="text-danger"></span>
         </div>
+<!--
         <div class="mb-3">
             <label>Payment Method *</label>
             <label class="container">
@@ -59,6 +60,15 @@
                 <span class="checkmark"></span>
             </label>
         </div>
+            -->
+            @Html.RadioButtonFor(m => m.DonationType, "Credit/Debit Card")
+            @Html.RadioButtonFor(m => m.DonationType, "Bank Account")
+
+            <div class="mb-3">
+                <label>Payment Method*</label>
+
+            </div>
+
         <div>
             <button asp-controller="Donation" asp-action="MakeDonation" type="submit" class="btn btn-primary" style="width:150px">Submit</button>
         </div>

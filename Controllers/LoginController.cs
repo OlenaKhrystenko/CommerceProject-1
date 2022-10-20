@@ -34,13 +34,53 @@ namespace CommerceProject.Controllers
         //POST action method
         [HttpPost]  
         [ValidateAntiForgeryToken]  
-        public IActionResult Create(Login obj)
+        public IActionResult Create(Login obj, IFormCollection form)
         {
+            IEnumerable<Login> objLoginList = _db.Logins;
+            
             if (ModelState.IsValid)
             {
-                _db.Logins.Add(obj);    //add new entry to DB
-                _db.SaveChanges();      //goes to the DB and saves all the changes  
-                return RedirectToAction("Index");
+                string pwd = form["Password"];
+                string confirmPwd = form["ConfirmPassword"];
+                //string sq1 = form["SQ1"],
+                 //       sq2 = form["SQ2"],
+                  //      sq3 = form["SQ3"];
+                string userName = form["UserName"];
+
+                string errorMsg = "";
+
+                if (objLoginList != null) 
+                {
+                    foreach (Login login in objLoginList) 
+                    {
+                        if (userName == login.UserName) 
+                        {
+                            errorMsg += "Login already exists.";
+                        }
+                    }
+                }
+                if (pwd != confirmPwd)
+                {
+                    errorMsg += "Password and Confirm Password must match.";
+                }
+
+                if (!errorMsg.Equals("")) 
+                {
+                    ViewBag.Message = errorMsg;
+                    obj.UserName = userName;
+                    obj.Password = pwd;
+                    //obj.SecurityQuestion1 = sq1;
+                    //obj.SecurityQuestion2 = sq2;
+                    //obj.SecurityQuestion3 = sq3;
+
+                    //return View(obj);
+                }
+                else { 
+                    _db.Logins.Add(obj);    //add new entry to DB
+                    _db.SaveChanges();      //goes to the DB and saves all the changes  
+                    return RedirectToAction("Index");
+                }
+
             }
             return View(obj);  
         }
