@@ -2,6 +2,7 @@
 using CommerceProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections;
 
 namespace CommerceProject.Controllers
 {
@@ -25,6 +26,10 @@ namespace CommerceProject.Controllers
             return View();
         }
 
+        public string NewUserCreated() { 
+            return "New User was successfully created.";
+        }
+
         //GET action method
         public IActionResult Create()
         {
@@ -37,49 +42,46 @@ namespace CommerceProject.Controllers
         public IActionResult Create(Login obj, IFormCollection form)
         {
             IEnumerable<Login> objLoginList = _db.Logins;
-            
-            if (ModelState.IsValid)
+
+            string pwd = form["Password"];
+            string confirmPwd = form["ConfirmPassword"];
+            string userName = form["UserName"];
+
+            string errorMsg = "";
+
+            if (objLoginList != null)
             {
-                string pwd = form["Password"];
-                string confirmPwd = form["ConfirmPassword"];
-                //string sq1 = form["SQ1"],
-                 //       sq2 = form["SQ2"],
-                  //      sq3 = form["SQ3"];
-                string userName = form["UserName"];
-
-                string errorMsg = "";
-
-                if (objLoginList != null) 
+                foreach (Login login in objLoginList)
                 {
-                    foreach (Login login in objLoginList) 
+                    if (userName == login.UserName)
                     {
-                        if (userName == login.UserName) 
-                        {
-                            errorMsg += "Login already exists.";
-                        }
+                        errorMsg += "Login already exists.";
                     }
                 }
-                if (pwd != confirmPwd)
-                {
-                    errorMsg += "Password and Confirm Password must match.";
-                }
+            }
+            if (pwd != confirmPwd)
+            {
+                errorMsg += "Password and Confirm Password must match.";
+            }
 
-                if (!errorMsg.Equals("")) 
-                {
-                    ViewBag.Message = errorMsg;
-                    obj.UserName = userName;
-                    obj.Password = pwd;
-                    //obj.SecurityQuestion1 = sq1;
-                    //obj.SecurityQuestion2 = sq2;
-                    //obj.SecurityQuestion3 = sq3;
+            if (errorMsg != "")
+            {
+                ViewBag.Message = errorMsg;
+                obj.UserName = userName;
+                obj.Password = pwd;
 
-                    //return View(obj);
-                }
-                else { 
+                return View(obj);
+            }
+
+
+            if (ModelState.IsValid)
+            {   
+                if (errorMsg.Length == 0) { 
                     _db.Logins.Add(obj);    //add new entry to DB
                     _db.SaveChanges();      //goes to the DB and saves all the changes  
-                    return RedirectToAction("Index");
-                }
+                    //return RedirectToAction("Index");
+                    return RedirectToAction("NewUserCreated");
+                } 
 
             }
             return View(obj);  
