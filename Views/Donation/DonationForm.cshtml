@@ -22,53 +22,19 @@
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="DonationType">Type of Donation *</label>
-              <label asp-for="DonationType" class="container">Gift
-                <input asp-for="DonationType" type="checkbox" checked="checked" name="DonationType">
-                <span class="checkmark"></span>
-            </label>
-            <label asp-for="DonationType" class="container">Building Expansion
-                    <input asp-for="DonationType" type="checkbox" checked="checked" name="DonationType">
-                <span class="checkmark"></span>
-            </label>
-            <label asp-for="DonationType" class="container">One Time Donation
-                    <input asp-for="DonationType" type="checkbox" checked="checked" name="DonationType">
-                <span class="checkmark"></span>
-            </label>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Comment">Comment *</label>
-            <input asp-for="Comment" class="form-control" />
-            <span asp-validation-for="Comment" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
             <label asp-for="DonationAmount">Donation Amount *</label>
             <input asp-for="DonationAmount" class="form-control" />
             <span asp-validation-for="DonationAmount" class="text-danger"></span>
         </div>
-<!--
         <div class="mb-3">
-            <label>Payment Method *</label>
-            <label class="container">
-                Debit or Credit Card
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label>
-            <label class="container">
-                Bank Account
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label>
-        </div>
-            -->
+             <label>Payment Method*</label>
+                <hr />
+             <label>Credit/Debit Card</label>
             @Html.RadioButtonFor(m => m.DonationType, "Credit/Debit Card")
+            <br>
+            <label>Bank Account</label>
             @Html.RadioButtonFor(m => m.DonationType, "Bank Account")
-
-            <div class="mb-3">
-                <label>Payment Method*</label>
-
-            </div>
-
+        </div>
         <div>
             <button asp-controller="Donation" asp-action="MakeDonation" type="submit" class="btn btn-primary" style="width:150px">Submit</button>
         </div>
