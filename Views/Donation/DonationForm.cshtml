@@ -1,5 +1,6 @@
 ﻿@model DonationForm
 
+
 @using (Html.BeginForm("MakeDonation", "Donation")){
 <form method="post">
     <div class="border p-3 mt-4">
@@ -26,19 +27,84 @@
             <input asp-for="DonationAmount" class="form-control" />
             <span asp-validation-for="DonationAmount" class="text-danger"></span>
         </div>
+ <!--
         <div class="mb-3">
              <label>Payment Method*</label>
                 <hr />
              <label>Credit/Debit Card</label>
-            @Html.RadioButtonFor(m => m.DonationType, "Credit/Debit Card")
+            @Html.RadioButtonFor(model => model.DonationType, "CreditOrDebitCard")
             <br>
             <label>Bank Account</label>
-            @Html.RadioButtonFor(m => m.DonationType, "Bank Account")
+            @Html.RadioButtonFor(model => model.DonationType, "BankAccount")
         </div>
+                   -->
+<!--
+        <div id="card" hidden>
+            <card>
+                <input class="form-control" placeholder="ForCreditDebitCard"></input>
+            </card>
+        </div>
+            <div id="account" hidden>
+                <card>
+                    <input class="form-control" placeholder="ForBankAccount"></input>
+                </card>
+            </div>
+            -->
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+            </script>
+            <style type="text/css">
+                .selectt {
+                    color: #fff;
+                    padding: 30px;
+                    display: none;
+                    margin-top: 30px;
+                    width: 60%;
+                    background: violet
+                }
+
+                label {
+                    margin-right: 20px;
+                }
+            </style>
+
+            <div>
+                <label>
+                    <input asp-for="DonationType" type="radio" name="DonationType" value="CreditOrDebitCard">Credit/DebitCard
+                </label>
+                <label>
+                    <input asp-for="DonationType" type="radio" name="DonationType" value="BankAccount">Bank Account
+                </label>
+            </div>
+            <div class="CreditOrDebitCard selectt">
+                <card>
+                    <input class="form-control" placeholder="ForCreditDebitCard">
+                </card>
+            </div>
+            <div class="BankAccount selectt">
+                <card>
+                    <input class="form-control" placeholder="ForBankAccount">
+                </card>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('input[type="radio"]').click(function () {
+                        var inputValue = $(this).attr("value");
+                        var targetBox = $("." + inputValue);
+                        $(".selectt").not(targetBox).hide();
+                        $(targetBox).show();
+                    });
+                });
+            </script>
+            <hr />
         <div>
             <button asp-controller="Donation" asp-action="MakeDonation" type="submit" class="btn btn-primary" style="width:150px">Submit</button>
         </div>
         <hr />
     </div>
+
+        <h4>You Selected</h4>
+        <b>Donation Type: </b>@ViewBag.Message<br />
+
 </form>
 }
+

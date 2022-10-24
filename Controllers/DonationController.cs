@@ -30,13 +30,19 @@ namespace CommerceProject.Controllers
         //POST Action method
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult MakeDonation(DonationForm form, IFormCollection formColl) {
-            if (ModelState.IsValid)
+        public IActionResult MakeDonation(DonationForm form, IFormCollection collection) {
+            //if (ModelState.IsValid)
             {
-                form.DonationType = formColl["DonationType"];
+                //string donType = form.DonationType.ToString();
+                String donType = collection["DonationType"];
+                string msg = collection["Name"] + " donated " + collection["DonationAmount"] + " via " + donType;
+                ViewBag.Message = msg;
+                form.DonationType = donType;
+                form.Comment = "some comment";
+
                 _dbContext.donationForms.Add(form);
                 _dbContext.SaveChanges();
-                return RedirectToAction("Index");   
+                //return RedirectToAction("Index");   
             }
             return View("DonationForm");
         }
