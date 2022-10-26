@@ -15,6 +15,7 @@ namespace CommerceProject.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
