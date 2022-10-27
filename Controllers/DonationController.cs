@@ -36,6 +36,7 @@ namespace CommerceProject.Controllers
                 //string donType = form.DonationType.ToString();
                 String donType = collection["DonationType"];
                 string msg = collection["Name"] + " donated " + collection["DonationAmount"] + " via " + donType;
+                ViewBag.Name = collection["Name"];
                 ViewBag.Message = msg;
                 form.DonationType = donType;
                 form.Comment = "some comment";

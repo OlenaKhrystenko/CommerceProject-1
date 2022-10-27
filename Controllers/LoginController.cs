@@ -10,7 +10,7 @@ namespace CommerceProject.Controllers
     {
         private readonly ApplicationDBContext _db;
 
-       
+        private string name;
         
         //constructor
         public LoginController(ApplicationDBContext db)
@@ -26,8 +26,10 @@ namespace CommerceProject.Controllers
             return View();
         }
 
-        public string NewUserCreated() { 
-            return "New User was successfully created.";
+        public IActionResult NewUserCreated() {
+            
+            ViewBag.name = name;
+            return View("NewUserCreatedView");
         }
 
         //GET action method
@@ -80,6 +82,7 @@ namespace CommerceProject.Controllers
                     _db.Logins.Add(obj);    //add new entry to DB
                     _db.SaveChanges();      //goes to the DB and saves all the changes  
                     //return RedirectToAction("Index");
+                    name = obj.UserName;
                     return RedirectToAction("NewUserCreated");
                 } 
 

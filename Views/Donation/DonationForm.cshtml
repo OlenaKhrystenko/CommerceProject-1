@@ -3,7 +3,7 @@
 
 @using (Html.BeginForm("MakeDonation", "Donation")){
 <form method="post">
-    <div class="border p-3 mt-4">
+    <div class="border p-3 mt-4" id="main">
         <div class="row pb-2">
             <h2 class="text-primary">Donation Form</h2>
         </div>
@@ -130,14 +130,33 @@
             </script>
             <hr />
         <div>
-            <button asp-controller="Donation" asp-action="MakeDonation" type="submit" class="btn btn-primary" style="width:150px">Submit</button>
+            <button id="btn" asp-controller="Donation" asp-action="MakeDonation" type="submit" class="btn btn-primary" style="width:150px">Submit</button>
         </div>
         <hr />
     </div>
 
-        <h4>You Selected</h4>
-        <b>Donation Type: </b>@ViewBag.Message<br />
+<!--<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script type='text/javascript'>
+            $("main").hide();    
+        </script>
 
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script>$(document).ready(function () {
+        $("#btn").click(function () {
+        $("#main").hide()
+        });
+        });
+        </script>
+
+        -->
+        <b>Donation: </b>
+
+        @ViewBag.Message
+        
+
+        
+
+        <br />
 </form>
 }
 
