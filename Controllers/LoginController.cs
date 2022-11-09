@@ -101,7 +101,7 @@ namespace CommerceProject.Controllers
                     _db.User_1s.Add(obj);    //add new entry to DB
                     _db.SaveChanges();      //goes to the DB and saves all the changes  
                     //return RedirectToAction("Index");
-                    name = obj.UserName;
+                
                     return RedirectToAction("NewUserCreated");
                 } 
 

@@ -10,9 +10,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FundraiserNameAndLogo</a>
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">...Loading</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,18 +25,21 @@
                      <!--<li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="HowItWorks">How it works?</a>
                         </li>
-                           -->
+                           
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Sign in</a>
                         </li>
-                        <!--
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Search" asp-action="SearchForFundraiser">Search</a>
-                        </li>
                         -->
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Search" asp-action="SearchForFundraiser">Search</a>
+                        </li>
+                        
+                        <!--
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Donation" asp-action="MakeDonation">Make Donation</a>
                         </li>
+                        -->
+                        
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Fundraiser" asp-action="FundraiserListView">Fundraisers</a>
                         </li>

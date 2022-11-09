@@ -34,8 +34,8 @@ namespace CommerceProject.Controllers
             if (ModelState.IsValid)
             {
                 //string donType = form.DonationType.ToString();
-                String donType = collection["DonationType"];
-                string msg = collection["Name"] + " donated " + collection["DonationAmount"] + " via " + donType;
+                String donType = collection["PaymentMethod"];
+                string msg = collection["DonorName"] + " donated " + collection["DonorAmount"] + " via " + donType;
                 ViewBag.Message = msg;
                 form.PaymentMethod = donType;
                 
