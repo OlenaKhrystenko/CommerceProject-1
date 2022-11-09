@@ -10,8 +10,8 @@ namespace CommerceProject.Controllers
     {
         private readonly ApplicationDBContext _db;
 
-        private string name;
-        
+
+
         //constructor
         public LoginController(ApplicationDBContext db)
         {
@@ -26,10 +26,25 @@ namespace CommerceProject.Controllers
             return View();
         }
 
-        public IActionResult NewUserCreated() {
-            
-            ViewBag.name = name;
-            return View("NewUserCreatedView");
+        public IActionResult Test()
+        {
+            IEnumerable<User_1> users = _db.User_1s;
+            return View("Demo");
+        }
+
+        public string NewUserCreated() {
+            return "New User was successfully created.";
+        }
+        
+        public IActionResult testcase()
+        {
+            IEnumerable<User_1> users = _db.User_1s;
+            return View("Demo");
+        }
+
+        public string NewUserNotCreated()
+        {
+            return "New User was not created.";
         }
 
         //GET action method
@@ -41,9 +56,9 @@ namespace CommerceProject.Controllers
         //POST action method
         [HttpPost]  
         [ValidateAntiForgeryToken]  
-        public IActionResult Create(Login obj, IFormCollection form)
+        public IActionResult Create(User_1 obj, IFormCollection form)
         {
-            IEnumerable<Login> objLoginList = _db.Logins;
+            IEnumerable<User_1> objLoginList = _db.User_1s;
 
             string pwd = form["Password"];
             string confirmPwd = form["ConfirmPassword"];
@@ -53,7 +68,7 @@ namespace CommerceProject.Controllers
 
             if (objLoginList != null)
             {
-                foreach (Login login in objLoginList)
+                foreach (User_1 login in objLoginList)
                 {
                     if (userName == login.UserName)
                     {
@@ -72,14 +87,18 @@ namespace CommerceProject.Controllers
                 obj.UserName = userName;
                 obj.Password = pwd;
 
-                return View(obj);
+                return View("Create");
             }
 
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {   
-                if (errorMsg.Length == 0) { 
-                    _db.Logins.Add(obj);    //add new entry to DB
+                if (errorMsg.Length == 0) {
+                    obj.Address = " ";
+                    obj.Dob = " ";
+                    obj.Email = " ";
+                obj.Password = form["Password"];
+                    _db.User_1s.Add(obj);    //add new entry to DB
                     _db.SaveChanges();      //goes to the DB and saves all the changes  
                     //return RedirectToAction("Index");
                     name = obj.UserName;
@@ -87,7 +106,7 @@ namespace CommerceProject.Controllers
                 } 
 
             }
-            return View(obj);  
+            return View("Create");  
         }
 
         //GET Action method
@@ -102,81 +121,81 @@ namespace CommerceProject.Controllers
             string usr = form["UserName"];
             string pwd = form["Password"];
 
-            string specialSymbols = " !#\"$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-            string digits = "0123456789";
+            //string specialSymbols = " !#\"$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            //string digits = "0123456789";
 
-            int isSpecSymb = 0;
-            int isDig = 0;
-            int isUprCs = 0;
-            int isMinReached = 0;
+            //int isSpecSymb = 0;
+            //int isDig = 0;
+            //int isUprCs = 0;
+            //int isMinReached = 0;
 
-            if (usr != null && pwd != null)
-            {
-                //if a password contains at least one special symbol
-                foreach (char item in pwd)
-                {
-                    foreach(char spec in specialSymbols)
-                    {
-                        if(item == spec)
-                        {
-                            isSpecSymb++;
-                        }
-                    }
-                }
-                //if a password contains at least one digit
-                foreach (char item in pwd)
-                {
-                    if (Char.IsDigit(item)) 
-                    {
-                        isDig++;
-                    }
-                }
-                //if a password contains at least one uppercase symbol
-                foreach (char item in pwd)
-                {
-                    if (Char.IsUpper(item)) 
-                    { 
-                        isUprCs++;
-                    }
-                }
-                //if a password's length is at least 8 characters
-                if (pwd.Length >= 8) 
-                {
-                    isMinReached++;
-                }
-            }
+            //if (usr != null && pwd != null)
+            //{
+            //    //if a password contains at least one special symbol
+            //    foreach (char item in pwd)
+            //    {
+            //        foreach(char spec in specialSymbols)
+            //        {
+            //            if(item == spec)
+            //            {
+            //                isSpecSymb++;
+            //            }
+            //        }
+            //    }
+            //    //if a password contains at least one digit
+            //    foreach (char item in pwd)
+            //    {
+            //        if (Char.IsDigit(item)) 
+            //        {
+            //            isDig++;
+            //        }
+            //    }
+            //    //if a password contains at least one uppercase symbol
+            //    foreach (char item in pwd)
+            //    {
+            //        if (Char.IsUpper(item)) 
+            //        { 
+            //            isUprCs++;
+            //        }
+            //    }
+            //    //if a password's length is at least 8 characters
+            //    if (pwd.Length >= 8) 
+            //    {
+            //        isMinReached++;
+            //    }
+            //}
 
-            string pwdErrMsg = "";
+            //string pwdErrMsg = "";
 
-            if (isMinReached == 0) 
-            {
-                pwdErrMsg += "Password must contain at least 8 characters.";
-            }
-            if (isDig == 0) 
-            {
-                pwdErrMsg += "\r\nPassword must contain one digit.";
-            }
-            if (isSpecSymb == 0) 
-            {
-                pwdErrMsg += "\r\nPassword must contain one special sybol.";
-            }
-            if (isUprCs == 0)
-            {
-                pwdErrMsg += "\r\nPassword must contain one uppercase letter.";
-            }
+            //if (isMinReached == 0) 
+            //{
+            //    pwdErrMsg += "Password must contain at least 8 characters.";
+            //}
+            //if (isDig == 0) 
+            //{
+            //    pwdErrMsg += "\r\nPassword must contain one digit.";
+            //}
+            //if (isSpecSymb == 0) 
+            //{
+            //    pwdErrMsg += "\r\nPassword must contain one special sybol.";
+            //}
+            //if (isUprCs == 0)
+            //{
+            //    pwdErrMsg += "\r\nPassword must contain one uppercase letter.";
+            //}
 
-            if (pwdErrMsg.Length > 0)
-            {
-                ViewBag.Message = pwdErrMsg;
-                return View("Index");
-            }
-            else
-            {
+            //if (pwdErrMsg.Length > 0)
+            //{
+            //    ViewBag.Message = pwdErrMsg;
+            //    return View("Index");
+            //}
+            //else
+            //{
                 string yes = "no";
-                IEnumerable<Login> objLoginList = _db.Logins;
+                IEnumerable<User_1> objLoginList = _db.User_1s;
                 if (objLoginList != null)
                 {
-                    foreach (Login login in objLoginList)
+                    foreach (User_1 login in objLoginList)
                     {
                         if (login.UserName == usr && login.Password == pwd)
                         {
@@ -189,21 +208,10 @@ namespace CommerceProject.Controllers
                 }
                 ViewBag.Message = "Your login or password is incorrect";
                 return View("Index");
-            }
+           // }
         }
 
-        public IActionResult passwordCheck(IFormCollection form) 
-        {
-            string password = form["Password"];
-            if (!string.IsNullOrEmpty(password))
-            {
-                if (password.Contains('T')) 
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            return View("Index");
-        }
+ 
 
  /*       public string demo(IFormCollection form) {
             

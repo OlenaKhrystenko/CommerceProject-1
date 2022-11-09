@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fundraiser>
+﻿@model IEnumerable<Fundraiser_1>
 @{
     ViewData["Title"] = "FundraiserListView";
 }
@@ -29,17 +29,17 @@
             <tr>
                 <td width="30%">
                     <a asp-controller="Fundraiser" asp-action="Index" class="link-primary">
-                        @obj.Title
+                        @obj.FundraiserName
                     </a>
                 </td>
                 <td width="40%">
-                    @obj.Description
+                    @obj.FundraiserDescription
                 </td>
                 <td width="15%">
-                    @obj.Goal
+                    @obj.FundraiserGoal
                 </td>
                 <td width="15%">
-                    @obj.CurrentAmount
+                    @obj.FundraiserCurrentAmount
                 </td>
             </tr>
         }

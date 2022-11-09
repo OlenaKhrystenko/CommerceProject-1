@@ -1,4 +1,4 @@
-﻿@model DonationForm
+﻿@model Donor_1
 
 
 @using (Html.BeginForm("MakeDonation", "Donation")){
@@ -8,9 +8,9 @@
             <h2 class="text-primary">Donation Form</h2>
         </div>
         <div class="mb-3">
-            <label asp-for="Name">Full Name *</label>
-            <input asp-for="Name" class="form-control" name="Name"/>
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="DonorName">Donor Name *</label>
+            <input asp-for="DonorName" class="form-control" name="DonorName"/>
+            <span asp-validation-for="DonorName" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Email">E-mail *</label>
@@ -23,19 +23,19 @@
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="DonationAmount">Donation Amount *</label>
-            <input asp-for="DonationAmount" class="form-control" />
-            <span asp-validation-for="DonationAmount" class="text-danger"></span>
+            <label asp-for="DonorAmount" >Donation Amount *</label>
+            <input asp-for="DonorAmount" class="form-control" name="DonorAmount" />
+            <span asp-validation-for="DonorAmount" class="text-danger"></span>
         </div>
  <!--
         <div class="mb-3">
              <label>Payment Method*</label>
                 <hr />
              <label>Credit/Debit Card</label>
-            @Html.RadioButtonFor(model => model.DonationType, "CreditOrDebitCard")
+            @Html.RadioButtonFor(model => model.PaymentMethod, "CreditOrDebitCard")
             <br>
             <label>Bank Account</label>
-            @Html.RadioButtonFor(model => model.DonationType, "BankAccount")
+            @Html.RadioButtonFor(model => model.PaymentMethod, "BankAccount")
         </div>
                    -->
 <!--
@@ -69,10 +69,10 @@
 
             <div>
                 <label>
-                    <input asp-for="DonationType" type="radio" name="DonationType" value="CreditOrDebitCard">Credit/DebitCard
+                    <input asp-for="PaymentMethod" type="radio" name="PaymentMethod" value="CreditOrDebitCard">Credit/DebitCard
                 </label>
                 <label>
-                    <input asp-for="DonationType" type="radio" name="DonationType" value="BankAccount">Bank Account
+                    <input asp-for="PaymentMethod" type="radio" name="PaymentMethod" value="BankAccount">Bank Account
                 </label>
             </div>
             <div class="CreditOrDebitCard selectt">

@@ -1,8 +1,10 @@
-﻿@model Login
+﻿@model User_1
 @{
     ViewData["Title"] = "Index";
     //ViewBag.Title = "Index";
 }
+
+
 
 <div class="row">
     <div class="col-6">
@@ -23,17 +25,11 @@
                                 <input asp-for=Password type="text" placeholder="password" class="form-control" name="Password" />
                                 
                             </div>
-                        
-                    <!--<div class="mb-3">
-                            
-                            <input asp-for=Password class="form-control" placeholder="password" name="Password" type="password" data-val="true" data-val-length="The field Password must be a string with a minimum length of 8 chracters." data-val-length-max="60" data-val-length-min="8" data-val-required="The Password field is required." id="Password" maxlength="60" /><br />
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                            -->
 
-                        <div class="mb-3">
+                            <div class="mb-3">
                             <button asp-controller="Login" asp-action="demo" type="submit" class="btn btn-primary">Log in</button>
                         </div>
+
                         <div class="mb-3">
                             <label>Don't have an account?</label>
                             <a asp-controller="Login" asp-action="Create" class="link-primary">
@@ -64,5 +60,5 @@
     <br />
 
 </div>
-
 -->
+

@@ -6,8 +6,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//builder.Services.AddDbContext<ApplicationDBContext>(options => 
+//{
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+//        sqlServerOptionsAction: sqlOptions =>
+//        {
+//            sqlOptions.EnableRetryOnFailure(
+//                maxRetryCount: 2,
+//                maxRetryDelay: TimeSpan.FromSeconds(10),
+//                errorNumbersToAdd: null);
+//        });
+//});
+
 builder.Services.AddRazorPages();
 /*
 builder.Services.Configure<IdentityOptions>(options =>

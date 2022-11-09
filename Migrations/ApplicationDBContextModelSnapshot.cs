@@ -90,6 +90,41 @@ namespace CommerceProject.Migrations
                     b.ToTable("Donors");
                 });
 
+            modelBuilder.Entity("CommerceProject.Models.Donor_1", b =>
+                {
+                    b.Property<int>("DonorID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DonorID"), 1L, 1);
+
+                    b.Property<double>("DonorAmount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("DonorDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DonorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DonorID");
+
+                    b.ToTable("Donor_1s");
+                });
+
             modelBuilder.Entity("CommerceProject.Models.Fundraiser", b =>
                 {
                     b.Property<int>("FundraiserID")
@@ -120,6 +155,33 @@ namespace CommerceProject.Migrations
                     b.HasIndex("UserProfileUserId");
 
                     b.ToTable("Fundraisers");
+                });
+
+            modelBuilder.Entity("CommerceProject.Models.Fundraiser_1", b =>
+                {
+                    b.Property<int>("FundraiserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FundraiserId"), 1L, 1);
+
+                    b.Property<double>("FundraiserCurrentAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("FundraiserDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("FundraiserGoal")
+                        .HasColumnType("float");
+
+                    b.Property<string>("FundraiserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FundraiserId");
+
+                    b.ToTable("Fundraiser_1s");
                 });
 
             modelBuilder.Entity("CommerceProject.Models.Login", b =>
@@ -157,6 +219,55 @@ namespace CommerceProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Logins");
+                });
+
+            modelBuilder.Entity("CommerceProject.Models.User_1", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Dob")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SequrityQuestion1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SequrityQuestion2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SequrityQuestion3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("User_1s");
                 });
 
             modelBuilder.Entity("CommerceProject.Models.UserProfile", b =>
