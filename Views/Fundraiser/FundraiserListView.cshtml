@@ -1,10 +1,16 @@
 ﻿@model IEnumerable<Fundraiser_1>
 @{
-    ViewData["Title"] = "FundraiserListView";
+    ViewData["Title"] = "Home Page";
+   
+
 }
+
 
 <p>Here you will see a list of fundraisers</p>
 
+
+@using (Html.BeginForm("Index", "Fundraiser", FormMethod.Post)){
+<form method="post">
 <table class="table table-bordered table-striped" style="width:100%">
     <thead>
         <tr>
@@ -28,12 +34,12 @@
         {
             <tr>
                 <td width="30%">
-                    <a asp-controller="Fundraiser" asp-action="Index" class="link-primary">
-                        @obj.FundraiserName
-                    </a>
+                    @Html.ActionLink(@obj.FundraiserName, "ShowData", "Fundraiser", new {FundraiserName = @obj.FundraiserName, 
+                        Description = @obj.FundraiserDescription, CurrentAmount = obj.FundraiserCurrentAmount,
+                        Goal = obj.FundraiserGoal}, null );                            
                 </td>
                 <td width="40%">
-                    @obj.FundraiserDescription
+                    @obj.FundraiserDescription   
                 </td>
                 <td width="15%">
                     @obj.FundraiserGoal
@@ -45,3 +51,5 @@
         }
     </tbody>
 </table>
+    </form>
+}

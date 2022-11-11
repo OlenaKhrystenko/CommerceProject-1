@@ -1,4 +1,21 @@
-﻿<p>This page is dedicated to the selected fundraiser.</p>
+﻿@model Fundraiser_1
+@{
+    ViewData["Title"] = "Home Page";
+
+    var fundraiserName = TempData["FundraiserName"];
+    var fundraiserDescription = TempData["Description"];
+    var currentAmount = TempData["CurrentAmount"];
+    var goal = TempData["Goal"];
+}
+
+
+
+<h10>@fundraiserName</h10>
+<br />
+<br />
+
+
+
 
 <table class="table table-borderless" style="width:100%">
     <thead>
@@ -8,6 +25,8 @@
             </th>
             <th>
                 Fundraiser Info
+                <hr />
+                @fundraiserDescription
             </th>
         </tr>
     </thead>
@@ -23,6 +42,10 @@
                 <card>
                     <p>
                         Progress bar for collected money
+                        <hr />
+                        Goal: @goal
+                        <br />
+                        Already collected: @currentAmount
                     </p>
                     <p>
                         Number of donors
