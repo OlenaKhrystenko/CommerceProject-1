@@ -16,6 +16,7 @@ namespace CommerceProject.Controllers
 
         public IActionResult Index()
         {
+
             return View(new Fundraiser_1());
         }
 

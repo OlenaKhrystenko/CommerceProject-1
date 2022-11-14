@@ -19,7 +19,7 @@ namespace CommerceProject.Models
         public string PhoneNumber { get; set; }
         [Required]
         public string PaymentMethod { get; set; }
-
-        
+        [Required]
+        public string FundraiserTitle { get; set; }
     }
 }

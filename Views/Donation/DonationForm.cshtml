@@ -1,11 +1,17 @@
 ﻿@model Donor_1
+@{
+    var fund = TempData["Fund"];
+}
 
 
-@using (Html.BeginForm("MakeDonation", "Donation")){
+@using (Html.BeginForm("MakeDonation", "Donation", FormMethod.Post)){
 <form method="post">
     <div class="border p-3 mt-4" id="main">
         <div class="row pb-2">
             <h2 class="text-primary">Donation Form</h2>
+            <hr />
+            @fund
+            <hr />
         </div>
         <div class="mb-3">
             <label asp-for="DonorName">Donor Name *</label>

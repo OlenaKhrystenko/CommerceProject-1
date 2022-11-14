@@ -22,7 +22,8 @@ namespace CommerceProject.Migrations
                     DonorDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FundraiserTitle = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,29 +78,29 @@ namespace CommerceProject.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "donationForms");
+            //migrationBuilder.DropTable(
+            //    name: "donationForms");
 
             migrationBuilder.DropTable(
                 name: "Donor_1s");
 
-            migrationBuilder.DropTable(
-                name: "Donors");
+            //migrationBuilder.DropTable(
+            //    name: "Donors");
 
             migrationBuilder.DropTable(
                 name: "Fundraiser_1s");
 
-            migrationBuilder.DropTable(
-                name: "Logins");
+            //migrationBuilder.DropTable(
+            //    name: "Logins");
 
             migrationBuilder.DropTable(
                 name: "User_1s");
 
-            migrationBuilder.DropTable(
-                name: "Fundraisers");
+            //migrationBuilder.DropTable(
+            //    name: "Fundraisers");
 
-            migrationBuilder.DropTable(
-                name: "Profiles");
+            //migrationBuilder.DropTable(
+            //    name: "Profiles");
         }
     }
 }
