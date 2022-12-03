@@ -20,9 +20,9 @@ namespace CommerceProject.Controllers
 
         public IActionResult FundraiserListView() 
         {
-            IEnumerable<Fundraiser> objFundraiserList = _db.Fundraisers;
+            //IEnumerable<Fundraiser> objFundraiserList = _db.Fundraiser;
 
-            return View(objFundraiserList);
+            return View();
         }
     }
 }

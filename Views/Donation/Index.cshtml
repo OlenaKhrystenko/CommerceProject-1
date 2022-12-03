@@ -1,0 +1,143 @@
+﻿@model DonationForm
+
+
+
+    <form asp-action="Index">
+        <div class="border p-3 mt-4">
+            <div class="row pb-2">
+            <input type="hidden" asp-for="FundraiserID" name="FundraiserID" />
+                <h2 class="text-primary">Donation Form</h2>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Name">Full Name *</label>
+                <input asp-for="Name" class="form-control" name="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email">E-mail *</label>
+                <input asp-for="Email" class="form-control" name="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PhoneNumber">Phone Number *</label>
+                <input asp-for="PhoneNumber" class="form-control" name="PhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DonationAmount">Donation Amount *</label>
+                <input asp-for="DonationAmount" class="form-control" />
+                <span asp-validation-for="DonationAmount" class="text-danger"></span>
+            </div>
+            <!--
+                   <div class="mb-3">
+                        <label>Payment Method*</label>
+                           <hr />
+                        <label>Credit/Debit Card</label>
+            @Html.RadioButtonFor(model => model.DonationType, "CreditOrDebitCard")
+                       <br>
+                       <label>Bank Account</label>
+            @Html.RadioButtonFor(model => model.DonationType, "BankAccount")
+                   </div>
+                              -->
+            <!--
+                    <div id="card" hidden>
+                        <card>
+                            <input class="form-control" placeholder="ForCreditDebitCard"></input>
+                        </card>
+                    </div>
+                        <div id="account" hidden>
+                            <card>
+                                <input class="form-control" placeholder="ForBankAccount"></input>
+                            </card>
+                        </div>
+                        -->
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+            </script>
+            <style type="text/css">
+                .selectt {
+                    color: #000;
+                    padding: 30px;
+                    display: none;
+                    margin-top: 30px;
+                    width: 60%;
+                    background: violet
+                }
+
+                label {
+                    margin-right: 20px;
+                }
+            </style>
+
+            <div>
+                <label>
+                    <input asp-for="DonationType" type="radio" name="DonationType" value="CreditOrDebitCard">Credit/DebitCard
+                </label>
+                <label>
+                    <input asp-for="DonationType" type="radio" name="DonationType" value="BankAccount">Bank Account
+                </label>
+            </div>
+            <div class="CreditOrDebitCard selectt">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Payment Info</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="NameOnCard" placeholder="Name on card">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="CardNumber" placeholder="Card number">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="MonthYear" placeholder="MM/YY">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="CVC" placeholder="CVC">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="BankAccount selectt">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Payment Info</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="BankName" placeholder="Bank name">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="RoutingNumber" placeholder="Routing number">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="AccountNumber" placeholder="Account number">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" asp-for="NameOfAccountHolder" placeholder="Name of account holder">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('input[type="radio"]').click(function () {
+                        var inputValue = $(this).attr("value");
+                        var targetBox = $("." + inputValue);
+                        $(".selectt").not(targetBox).hide();
+                        $(targetBox).show();
+                    });
+                });
+            </script>
+            <hr />
+            <div>
+                <button type="submit" class="btn btn-primary" style="width:150px">Submit</button>
+            </div>
+            <hr />
+        </div>
+
+
+
+    </form>
+
+

@@ -4,57 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CommerceProject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CommerceProject.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" />*@
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+   
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">...Loading</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <!--Aligning login nav item to right "flex-grow-1 to w-100"
-
-                                        //MB-->
-                    <ul class="navbar-nav w-100">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Search" asp-action="SearchForFundraiser">Search</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Donation" asp-action="MakeDonation">Make Donation</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="StartFundraising" asp-action="FirstStepFundraising">Start Fundraising</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Fundraiser" asp-action="FundraiserListView">Fundraisers</a>
-                        </li>
-                        <li class="nav-item dropdown ms-auto">
-                            <a class="nav-link text-light dropdown-toggle" asp-area="" asp-controller="Login" asp-action="Index" navbarDropdownMenuLink role="button" data-toggle="dropdown" aria-expanded="false">Sign in</a>
-                          
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item" href="#">User</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Admin</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+       
+    
+        <partial name="_LoginPartial.cshtml" />
     </header>
 
  
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" >
             @RenderBody()
         </main>
     </div>
@@ -64,8 +31,11 @@
             &copy; 2022 - CommerceProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+
+   @* <script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+   @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
