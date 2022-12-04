@@ -9,17 +9,17 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CommerceProject.Migrations
+namespace CommerceProject.Migrations.ApplicationDB
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221013203135_AddDonationFormToDatabase")]
-    partial class AddDonationFormToDatabase
+    [Migration("20221203205807_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -32,27 +32,49 @@ namespace CommerceProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormID"), 1L, 1);
 
-                    b.Property<string>("Comment")
-                        .IsRequired()
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CVC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("DonationAmount")
                         .HasColumnType("float");
 
                     b.Property<string>("DonationType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FundraiserID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MonthYear")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NameOfAccountHolder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameOnCard")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoutingNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FormID");
@@ -60,68 +82,35 @@ namespace CommerceProject.Migrations
                     b.ToTable("donationForms");
                 });
 
-            modelBuilder.Entity("CommerceProject.Models.Donor", b =>
+            modelBuilder.Entity("CommerceProject.Models.Fundraisers", b =>
                 {
-                    b.Property<int>("DonorId")
+                    b.Property<int>("FundraiserID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DonorId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FundraiserID"), 1L, 1);
 
-                    b.Property<DateTime>("DateOfDonation")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Fundraiser")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("donatedAmount")
+                    b.Property<double?>("Goals")
                         .HasColumnType("float");
 
-                    b.HasKey("DonorId");
-
-                    b.ToTable("Donors");
-                });
-
-            modelBuilder.Entity("CommerceProject.Models.Login", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("FullName")
+                    b.Property<string>("Imagelink")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SecurityQuestion1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("FundraiserID");
 
-                    b.Property<string>("SecurityQuestion2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecurityQuestion3")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Logins");
+                    b.ToTable("Fundraisers");
                 });
 #pragma warning restore 612, 618
         }
