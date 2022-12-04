@@ -5,6 +5,7 @@
 <form method="post">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
+                <input type="hidden" asp-for="FundraiserID" name="FundraiserID" />
             <h2 class="text-primary">Donation Form</h2>
         </div>
         <div class="mb-3">
@@ -82,16 +83,16 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Name on card">
+                            <input class="form-control" asp-for="NameOnCard" placeholder="Name on card">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Card number">
+                            <input class="form-control" asp-for="CardNumber" placeholder="Card number">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" placeholder="MM/YY">
+                            <input class="form-control" asp-for="MonthYear" placeholder="MM/YY">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" placeholder="CVC">
+                            <input class="form-control" asp-for="CVC" placeholder="CVC">
                         </div>
                     </div>
                 </div>
@@ -104,16 +105,16 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Bank name">
+                            <input class="form-control" asp-for="BankName" placeholder="Bank name">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Routing number">
+                            <input class="form-control" asp-for="RoutingNumber" placeholder="Routing number">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Account number">
+                            <input class="form-control" asp-for="AccountNumber" placeholder="Account number">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" placeholder="Name of account holder">
+                            <input class="form-control" asp-for="NameOfAccountHolder" placeholder="Name of account holder">
                         </div>
                     </div>
                 </div>
@@ -135,8 +136,7 @@
         <hr />
     </div>
 
-        <h4>You Selected</h4>
-        <b>Donation Type: </b>@ViewBag.Message<br />
+      
 
 </form>
 }
