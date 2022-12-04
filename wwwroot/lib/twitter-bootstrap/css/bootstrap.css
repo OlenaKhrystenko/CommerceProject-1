@@ -4561,8 +4561,6 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   padding-right: 50px;
-  height: 100;
-
   /*padding: 20px;*/
 }
 

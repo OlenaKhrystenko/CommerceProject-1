@@ -9,17 +9,17 @@
 
 <html>
     <head>
-        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/CommerceProject.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/CommerceProject.styles.css" asp-append-version="true" />*@
     </head>
 
     <body>
         <header>
-            <div class="text-center">
+            @*<div class="text-center">
             <h1 class="display-4" style="font-weight:bold">Welcome Page</h1>
                 <p></p>
-            </div>
+            </div>*@
 
             
 
@@ -28,15 +28,34 @@
 
        
         <main>
-            <h4 class="display-6 mt-4" style="font-size:22px;font-weight:500"> Top Fundraisers</h4>
-            <!--Bootstrap card with info-->
-            <div>
-                <div class="row">
+            <div class="row">
+                <div class="hero">
+                    <video autoplay loop muted plays-inline class="back-video">
+                        <source src="NewFolder/backgroundVideo.mp4" type="video/mp4">
+                    </video>
 
+                    <div class="welcome">
+                        <h1>fundrr</h1>
+                        <h4> A special place to help those in need</h4>
+                        <a href="/StartFundraising/Create">Get started!</a>
+
+                        <p>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+            <!--Bootstrap card with info-->
+            <div class="top-fund">
+                <h4 class="display-6 mt-4" style="font-size:22px;font-weight:500"> Top Fundraisers</h4>
+                <div class="row">
+                    
                     @foreach (var item in Model)
                 {
                     <div class="col-3">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card h-100">
                             <img class="card-img-top" src=@item.Imagelink alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: #4CAF50; font-weight:bold;font-size:20px">@item.Title</h5>
@@ -52,56 +71,9 @@
                         </div>
                     </div>
                 }
-                 @*   <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.pexels.com/photos/1739855/pexels-photo-1739855.jpeg?cs=srgb&dl=pexels-hitesh-choudhary-1739855.jpg&fm=jpg&_gl=1" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Hurricane Blake Relief</h5>
-                                <p class="card-text">Hurricane Blake has rocked the east side of Texas and 80k+ families are without food, water electiricty...</p>
-                                <a href="#" class="btn btn-primary">Donate</a>
-                            </div>
-                            <div class="card-footer">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                    70%
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.pexels.com/photos/35537/child-children-girl-happy.jpg?cs=srgb&dl=pexels-bess-hamiti-35537.jpg&fm=jpg&_gl=1*1b14fv2" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Dylan Harbaugh</h5>
-                                <p class="card-text">For those who do not know him, Dylan Harbaugh is 3 years old with a very rare blood disorder. As you can imagine..."</p>
-                                <a href="#" class="btn btn-primary">Donate</a>
-                            </div>
-                             <div class="card-footer">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="31"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:31%">
-                                    31%
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?cs=srgb&dl=pexels-football-wife-1618269.jpg&fm=jpg&_gl=1" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Fairview Falcons Fundrasier</h5>
-                                <p class="card-text">It is that time again! The Fairview Falcons Fundraiser is back open as they continue to fight for their 4th championship in...</p></p>
-                            <a href="#" class="btn btn-primary">Donate</a>
-                            </div>
-                            <div class="card-footer">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="94"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:94%">
-                                    94%
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
+                </div>
+            </div>
+                 @*
                             <img class="card-img-top" src="https://images.pexels.com/photos/6010867/pexels-photo-6010867.jpeg?cs=srgb&dl=pexels-tima-miroshnichenko-6010867.jpg&fm=jpg&_gl=1" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Help for Emily</h5>
@@ -117,7 +89,7 @@
                         </div>
                     </div>
                 </div>*@
-            </div>
+                
           
 
             
