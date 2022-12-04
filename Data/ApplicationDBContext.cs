@@ -10,11 +10,13 @@ namespace CommerceProject.Data
 
         }
 
-        public DbSet<Login> Logins { get; set; }    
-        public DbSet<Donor> Donors { get; set; }
+        //public DbSet<Login> Logins { get; set; }    
+        //public DbSet<Donor> Donors { get; set; }
         public DbSet<DonationForm> donationForms { get; set; }
-        public DbSet<Fundraiser> Fundraisers { get; set; }
-        public DbSet<UserProfile> Profiles { get; set; }
-        public DbSet<Image> Images { get; set; }
+        //public DbSet<Fundraiser> Fundraisers { get; set; }
+
+        public DbSet<Fundraisers> Fundraisers { get; set; }
+        //public DbSet<UserProfile> Profiles { get; set; }
+        //public DbSet<Image> Images { get; set; }
     }
 }

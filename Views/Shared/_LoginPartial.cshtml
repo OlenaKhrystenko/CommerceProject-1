@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CommerceProject.Areas.Identity.Data
+
+@inject SignInManager<CommerceProjectUser> SignInManager
+@inject UserManager<CommerceProjectUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <h4 style="color:white">Commerce Project!</h4>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+
+                     @*   <li class="nav-item">
+                            <a class="nav-link text-white nav-item nav-link px-3" asp-area="" asp-controller="Donation" asp-action="MakeDonation">Donation</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-white nav-item nav-link px-3" href="/StartFundraising/Index">Fundraising</a>
+                        </li>
+
+
+
+
+
+                        <li class="nav-item">
+                            <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                        </li>
+                        <li class="nav-item">
+                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button id="logout" type="submit" class="nav-link btn btn-link text-white">Logout</button>
+                            </form>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+
+
+
+      
+
+
+
+
+
+  
+}
+else
+{
+     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+        <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <h4 style="color:white">Commerce Project!</h4>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+
+                     @*   <li class="nav-item">
+                            <a class="nav-link text-white nav-item nav-link px-3" asp-area="" asp-controller="Donation" asp-action="MakeDonation">Donation</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-white nav-item nav-link px-3" href="/StartFundraising/Index">Fundraising</a>
+                        </li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class=" text-right">
+                <ul class="navbar-nav flex-grow-1 text-right">
+
+
+                    <li class="nav-item ">
+                        <a class="nav-link text-white nav-item nav-link px-3 text-right" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white nav-item nav-link px-3" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+   @* <li class="nav-item">
+        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>*@
+}
+</ul>
