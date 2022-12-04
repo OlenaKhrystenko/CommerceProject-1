@@ -28,57 +28,15 @@ namespace CommerceProject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("FormID,Name,Email,PhoneNumber,DonationAmount,DonationType,NameOnCard,CardNumber,MonthYear,CVC,BankName,RoutingNumber,AccountNumber,NameOfAccountHolder,FundraiserID")] DonationForm form)
-        {
-            try
+        public IActionResult MakeDonation(DonationForm form, IFormCollection collection) {
+            //if (ModelState.IsValid)
             {
-
-
-                if (ModelState.IsValid)
-                {
-                  
-                   
-                    if (form.FundraiserID > 0)
-                    {
-                        var fundraiser = await _dbContext.Fundraisers.FindAsync(form.FundraiserID);
-                      
-                        var fundraiserbydonationform = from t in _dbContext.donationForms
-                                       where t.FundraiserID == form.FundraiserID
-                                       select t.DonationAmount;
-                        double total = fundraiserbydonationform.Sum(x => Convert.ToInt32(x));
-                        var donationamount =   total + form.DonationAmount;
-
-
-                        double percentage = (int)Math.Round(((double)donationamount / (double)fundraiser.Amount) * 100);
-                       
-
-
-                        fundraiser.Goals = percentage;
-                        if (fundraiser.Amount > donationamount)
-                        {
-                            _dbContext.Add(form);
-                            await _dbContext.SaveChangesAsync();
-                            _dbContext.Update(fundraiser);
-                            await _dbContext.SaveChangesAsync();
-                            return RedirectToAction("Index", "StartFundraising");
-
-                        }
-                        else
-                        {
-                            return View(form.FundraiserID);
-                            
-                        }
-                       
-                    }
-                   
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("invalid data", ex);
-
+                //string donType = form.DonationType.ToString();
+                String donType = collection["DonationType"];
+                string msg = collection["Name"] + " donated " + collection["DonationAmount"] + " via " + donType;
+                ViewBag.Message = msg;
+                form.DonationType = donType;
+                form.Comment = "some comment";
 
             }
             return View(form);
