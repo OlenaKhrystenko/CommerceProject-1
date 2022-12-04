@@ -40,7 +40,8 @@ namespace CommerceProject.Controllers
                     if (form.FundraiserID > 0)
                     {
                         var fundraiser = await _dbContext.Fundraisers.FindAsync(form.FundraiserID);
-                        var donationamount = fundraiser.Amount - form.DonationAmount;
+                        var donationamount = (form.DonationAmount / fundraiser.Amount) * 100;
+                        //var donationamount = fundraiser.Amount - form.DonationAmount;
                         fundraiser.Goals = donationamount;
                         if (fundraiser.Amount > form.DonationAmount)
                         {
