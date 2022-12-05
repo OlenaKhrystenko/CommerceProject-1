@@ -98,7 +98,7 @@
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <label asp-for="Input.Password"></label>
+                        <label asp-for="Input.Password">Password<br /> * at least 8 characters * <br /> * 1 uppercase * <br /> * 1 symbol & 1 number * </label>
                         <input asp-for="Input.Password" class="form-control" />
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
