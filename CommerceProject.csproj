@@ -7,10 +7,44 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Fundraiser\**" />
+    <Compile Remove="Views\Login\**" />
+    <Compile Remove="Views\Search\**" />
     <Compile Remove="wwwroot\NewFolder\NewFolder\**" />
+    <Content Remove="Views\Fundraiser\**" />
+    <Content Remove="Views\Login\**" />
+    <Content Remove="Views\Search\**" />
     <Content Remove="wwwroot\NewFolder\NewFolder\**" />
+    <EmbeddedResource Remove="Views\Fundraiser\**" />
+    <EmbeddedResource Remove="Views\Login\**" />
+    <EmbeddedResource Remove="Views\Search\**" />
     <EmbeddedResource Remove="wwwroot\NewFolder\NewFolder\**" />
+    <None Remove="Views\Fundraiser\**" />
+    <None Remove="Views\Login\**" />
+    <None Remove="Views\Search\**" />
     <None Remove="wwwroot\NewFolder\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\FundraiserController.cs" />
+    <Compile Remove="Controllers\LoginController.cs" />
+    <Compile Remove="Controllers\SearchController.cs" />
+    <Compile Remove="Models\BankAccountInfo.cs" />
+    <Compile Remove="Models\CardInfo.cs" />
+    <Compile Remove="Models\Image.cs" />
+    <Compile Remove="Models\Login.cs" />
+    <Compile Remove="Models\UserProfile.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Donation\DonationForm.cshtml" />
+    <Content Remove="Views\Home\HowItWorks.cshtml" />
+    <Content Remove="Views\Home\Privacy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".gitattributes" />
+    <None Remove=".gitignore" />
   </ItemGroup>
 
   <ItemGroup>
